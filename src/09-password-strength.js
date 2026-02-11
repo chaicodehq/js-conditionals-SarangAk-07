@@ -26,5 +26,72 @@
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+
+  if (typeof password !== "string" || password.trim() === "") {
+    return "weak";
+  }
+
+  
+  if (
+    /^.{8,}$/.test(password) &&
+    /[A-Z]/.test(password) &&
+    /[a-z]/.test(password) &&
+    /[0-9]/.test(password) &&
+    /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+  ) {
+    return "very strong";
+  }
+
+
+  if (
+    (
+      /^.{8,}$/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password)
+    ) ||
+    (
+      /^.{8,}$/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+    ) ||
+    (
+      /^.{8,}$/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+    ) ||
+    (
+      /^.{8,}$/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+    ) ||
+    (
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+    )
+  ) {
+    return "strong";
+  }
+
+
+  if (
+    (
+      /^.{8,}$/.test(password) +
+      /[A-Z]/.test(password) +
+      /[a-z]/.test(password) +
+      /[0-9]/.test(password) +
+      /[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/.test(password)
+    ) >= 2
+  ) {
+    return "medium";
+  }
+
+  return "weak";
 }
+
+    
